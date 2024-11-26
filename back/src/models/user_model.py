@@ -1,10 +1,10 @@
 from typing import Optional
 
 from pydantic import BaseModel
+from datetime import date
 
-class UserDomain(BaseModel):
-    idUsuario: Optional[int] = None
+class User(BaseModel):
     correo:str
     nombre:str
     contrasena:str
-    fechaRegistro:str
+    fechaRegistro:date

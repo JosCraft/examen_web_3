@@ -3,7 +3,7 @@ import NavBarStyle from "./NavBarStyle";
 import { Button } from "../../components/ui/button";
 import { Menu, X } from "lucide-react";
 import { FaHome, FaInfoCircle, FaStore } from 'react-icons/fa';
-import { checkToken } from "../../utilities";
+import { checkToken,getToken } from "../../utilities";
 import Logout from "../../components/Logout";
 
 const Navbar = () => {
@@ -13,6 +13,8 @@ const Navbar = () => {
 
     useEffect(() => {
       setIsAuthenticated(checkToken());
+      console.log('isAuthenticated:', checkToken());
+      console.log('Token:', getToken());
     }, []);
 
     const toggleMenu = () => {
@@ -30,18 +32,6 @@ const Navbar = () => {
                             <a href="/" className="link hover:text-indigo-400 transition-colors duration-200">
                                 <FaHome size={20} />
                                 Inicio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/about" className="link hover:text-indigo-400 transition-colors duration-200">
-                                <FaInfoCircle size={20} />
-                                Sobre Nosotros
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/shop" className="link hover:text-indigo-400 transition-colors duration-200">
-                                <FaStore size={20} />
-                                Tienda
                             </a>
                         </li>
                     </ul>
@@ -73,18 +63,6 @@ const Navbar = () => {
                             <li>
                                 <a href="/" className="block py-2 px-4 link text-white hover:bg-indigo-400 rounded transition-colors duration-200">
                                     <FaHome size={20} /> Inicio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/about" className="block py-2 px-4 link text-white hover:bg-indigo-400 rounded transition-colors duration-200">
-                                    <FaInfoCircle size={20} />
-                                    Sobre Nosotros
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/shop" className="block py-2 px-4 link text-white hover:bg-indigo-400 rounded transition-colors duration-200">
-                                    <FaStore size={20} />
-                                    Tienda
                                 </a>
                             </li>
                         </ul>

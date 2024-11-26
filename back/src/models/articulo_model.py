@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-class ArticuloDomain(BaseModel):
+class Articulo(BaseModel):
     idArticulo: Optional[int] = None
     nombre:str
     tipo:str

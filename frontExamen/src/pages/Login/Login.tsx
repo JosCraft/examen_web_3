@@ -5,8 +5,12 @@ import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { useState } from 'react';
 import { PrivateRoutes } from '../../models';
 
+import { saveToken } from '../../utilities';
+import { apiService } from '../../services/apiServices';
+
 const Login = () => {
   const navigate = useNavigate(); 
+  const [token, setToken] = useState('');
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -38,11 +42,29 @@ const submitLogin = async () => {
     setError('Por favor ingrese todos los campos');
     return;
   }
-  navigate(PrivateRoutes.BASE);
+
+  apiService.create('login', {
+    correo: formData.email,
+    contrasena: formData.password,
+  })
+    .then((data) => {
+      const token = data.token || data; 
+      setToken(token); 
+      saveToken(token); 
+      console.log('Token recibido:', token);
+      console.log('Login correcto');
+      navigate(`/${PrivateRoutes.BASE}/`);
+    })
+    .catch((error) => {
+      console.error('Error en login:', error);
+      setError('Credenciales incorrectas o error en el servidor');
+    })
+    .finally(() => setLoading(false));
   setLoading(true);
   setError('');
 };
 
+console.log('Token guardado', token, 'en localStorage');
 
   return (
     <Mainlayout>

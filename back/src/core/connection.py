@@ -5,7 +5,7 @@ connection_pool = pooling.MySQLConnectionPool(
     pool_size=5,
     pool_reset_session=True,
     host='127.0.0.1',
-    database='ex_web3_2024_2parcial',
+    database='examen_web_3',
     user='root',
     password='',
     connection_timeout=10
@@ -18,6 +18,7 @@ def get_connection():
         
         if not connection.is_connected():
             connection.reconnect(attempts=3, delay=2)
+        print(f"Connection pool: {connection_pool.pool_name}")
         return connection
     except Error as e:
         print(f"Error getting connection from pool: {e}")

@@ -16,7 +16,6 @@ async function fetchAPI(endpoint : any, { method = 'GET', body = null, params = 
             data: body ? body : undefined,
             params: params
         };
-        
         let response = await axios(options);
         return response.data;
     } catch (error) {
